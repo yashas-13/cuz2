@@ -1,6 +1,6 @@
 # **backend\_agents.md: Backend Interactions for Pharmaceutical Supply Chain Management System**
 
-This document details the backend architecture and how it facilitates interactions between the three user roles (Manufacturer, CFA, Stockist) within the Pharmaceutical Supply Chain Management System. The Flask backend serves as the central hub, managing data, enforcing business rules, and controlling access via a RESTful API.
+This document details the proposed backend architecture and how it will facilitate interactions between the three user roles (Manufacturer, CFA, Stockist) within the Pharmaceutical Supply Chain Management System.  At present no backend code exists in this repository; the design below serves as a blueprint for future implementation.  The intended Flask backend will act as the central hub, managing data, enforcing business rules, and controlling access via a RESTful API.
 
 ## **1\. Core Backend Principles**
 
