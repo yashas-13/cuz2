@@ -149,6 +149,11 @@ Instead of manually running each command you can execute:
 ./setup_and_run.sh
 ```
 
+The frontend's `api.js` module prefixes all requests with the backend URL. It
+defaults to `http://localhost:5000`, but you can override this by defining a
+`window.API_BASE` variable **before** loading `assets/js/api.js` when deploying
+against a different backend address.
+
 The script performs the same steps as above and launches both servers.
 
 Once running, open `http://localhost:8000/pages/register.html` to register the
