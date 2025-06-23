@@ -2,7 +2,11 @@
 
 ## Overview
 
-This repository contains an advanced, enterprise-level Supply Chain Management (SCM) system designed specifically for pharmaceutical manufacturers, Clearing & Forwarding Agents (CFAs), and stockists. The system ensures a tightly controlled in-house process flow where the Manufacturer retains authoritative oversight, with all CFA actions requiring explicit Manufacturer approval.
+This repository contains plans for an advanced, enterprise-level Supply Chain Management (SCM) system designed specifically for pharmaceutical manufacturers, Clearing & Forwarding Agents (CFAs), and stockists. The system ensures a tightly controlled in-house process flow where the Manufacturer retains authoritative oversight, with all CFA actions requiring explicit Manufacturer approval.
+
+## Project Status
+
+At the moment this repository only includes documentation describing the intended architecture and workflows.  The backend and frontend code referenced below has not yet been implemented.  The documents serve as a blueprint for future development.
 
 ## Key Functionalities
 
@@ -56,6 +60,8 @@ This repository contains an advanced, enterprise-level Supply Chain Management (
 - Notification banner & snackbar system for feedback
 
 ## Repository File Structure
+
+The layout below illustrates the planned organization of the project.  The actual directories have not been created yet.
 
 ```
 supply-chain-management/
@@ -112,6 +118,8 @@ supply-chain-management/
 - **Receipts & Order History:** Downloadable invoices & logs
 
 ## Installation and Setup
+
+The following commands reflect the intended project structure.  The repository currently lacks the `backend` and `frontend` directories, so these steps serve as guidance for future implementation.
 
 ### Backend
 

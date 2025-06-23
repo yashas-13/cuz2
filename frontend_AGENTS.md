@@ -1,6 +1,6 @@
 # **frontend\_agents.md: Enhanced Frontend Interactions for Pharmaceutical Supply Chain Management System**
 
-This document outlines the design and enhanced interaction patterns of the three primary user dashboards (manufacturer.html, cfa.html, stockist.html) within the Pharmaceutical Supply Chain Management System. It details how these dashboards connect to the backend API, handle user interactions, display information relevant to each role, and includes suggestions for richer functionalities.
+This document outlines the proposed design and enhanced interaction patterns of the three primary user dashboards (manufacturer.html, cfa.html, stockist.html) within the Pharmaceutical Supply Chain Management System.  The repository currently does not include these frontend pages or accompanying JavaScript; this file serves purely as a design reference.  It details how the dashboards will connect to the backend API, handle user interactions, display information relevant to each role, and includes suggestions for richer functionalities.
 
 ## **1\. Core Frontend Principles (Retained & Enhanced)**
 
