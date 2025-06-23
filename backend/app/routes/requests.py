@@ -19,7 +19,16 @@ def list_requests():
     if requester_id:
         query = query.filter_by(requester_id=int(requester_id))
     requests_list = query.all()
-    return jsonify([{'id': r.id, 'product_id': r.product_id, 'action': r.action, 'status': r.status} for r in requests_list])
+    return jsonify([
+        {
+            'id': r.id,
+            'product_id': r.product_id,
+            'action': r.action,
+            'quantity': r.quantity,
+            'location_id': r.location_id,
+            'status': r.status
+        } for r in requests_list
+    ])
 
 @requests_bp.route('/', methods=['POST'])
 @role_required('CFA')
