@@ -132,8 +132,10 @@ Node.js packages and then launches the Flask API on
 `http://localhost:8000`.
 
 After running the script you can open `http://localhost:8000/pages/register.html`
-to register the first manufacturer account.  The backend also seeds a sample
-manufacturer account on first run:
+to register the first manufacturer account or simply use the seeded login
+below.  Sign in via `http://localhost:8000/pages/login.html`; the page will
+redirect to the appropriate dashboard based on the authenticated user's role.
+The backend seeds a sample manufacturer account on first run:
 
   ```
   username: samplemanufacturer
