@@ -140,6 +140,19 @@ manufacturer account on first run:
   password: samplepass
   ```
 
+## URL Health Check
+
+To verify that both the backend API and frontend pages are reachable you can run
+the helper script:
+
+```sh
+./scripts/curl_test_all.sh
+```
+
+By default it checks `http://localhost:5000` for API endpoints and
+`http://localhost:8000` for frontend pages. Set the `BACKEND` or `FRONTEND`
+environment variables to override the base URLs.
+
 ## Authentication and Security
 
 - JWT-based token validation
