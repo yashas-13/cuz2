@@ -32,3 +32,20 @@ def test_profile_update():
     resp = client.get('/users/me', headers=headers)
     data = json.loads(resp.data)
     assert data['username'] == 'new'
+
+
+def test_manufacturer_create_user():
+    app = setup_app()
+    client = app.test_client()
+    with app.app_context():
+        manu_role = Role.query.filter_by(name='Manufacturer').first()
+        manu = User(username='m', email='m@example.com', password_hash=User.generate_hash('pass'), role=manu_role)
+        db.session.add(manu)
+        db.session.commit()
+        token = create_access_token(identity=str(manu.id), additional_claims={'role': 'Manufacturer'})
+    headers = {'Authorization': f'Bearer {token}'}
+    resp = client.post('/users/', json={'username': 'c1', 'email': 'c1@example.com', 'password': 'pass', 'role': 'CFA'}, headers=headers)
+    assert resp.status_code == 201
+    with app.app_context():
+        created = User.query.filter_by(username='c1').first()
+        assert created.creator.username == 'm'

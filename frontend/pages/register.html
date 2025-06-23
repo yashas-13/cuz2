@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manufacturer Registration</title>
+</head>
+<body>
+  <h1>Register Manufacturer</h1>
+  <form id="regForm">
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button type="submit">Register</button>
+  </form>
+  <script src="../assets/js/register.js" type="module"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../service-worker.js');
+  }
+  </script>
+</body>
+</html>

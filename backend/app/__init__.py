@@ -35,5 +35,26 @@ def create_app(config_class=None):
 
     with app.app_context():
         db.create_all()
+        # Ensure default roles exist
+        from .models import Role, User
+        if not Role.query.filter_by(name='Manufacturer').first():
+            db.session.add(Role(name='Manufacturer'))
+        if not Role.query.filter_by(name='CFA').first():
+            db.session.add(Role(name='CFA'))
+        if not Role.query.filter_by(name='Stockist').first():
+            db.session.add(Role(name='Stockist'))
+        db.session.commit()
+
+        # Create a sample manufacturer account if it doesn't exist
+        if not User.query.filter_by(username='samplemanufacturer').first():
+            manu_role = Role.query.filter_by(name='Manufacturer').first()
+            sample = User(
+                username='samplemanufacturer',
+                email='sample@scm.com',
+                password_hash=User.generate_hash('samplepass'),
+                role=manu_role
+            )
+            db.session.add(sample)
+            db.session.commit()
 
     return app
