@@ -6,12 +6,24 @@
 </head>
 <body>
 <h1>Stockist Dashboard</h1>
+<div id="cart"></div>
+<button id="checkoutBtn">Checkout</button>
 <script src="../assets/js/api.js"></script>
 <script type="module" src="../assets/js/stockist.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../service-worker.js');
   }
+</script>
+<script type="module">
+  import { getCart, checkout } from '../assets/js/stockist.js';
+  document.getElementById('checkoutBtn').addEventListener('click', checkout);
+  function renderCart() {
+    const cart = getCart();
+    document.getElementById('cart').textContent = JSON.stringify(cart);
+  }
+  window.addEventListener('storage', renderCart);
+  renderCart();
 </script>
 </body>
 </html>

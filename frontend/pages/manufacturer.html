@@ -6,7 +6,10 @@
 </head>
 <body>
 <h1>Manufacturer Dashboard</h1>
+<canvas id="salesChart" width="400" height="200"></canvas>
 <script src="../assets/js/api.js"></script>
+<script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+<script type="module" src="../charts/analytics.js"></script>
 <script type="module" src="../assets/js/manufacturer.js"></script>
 <script>
   if ('serviceWorker' in navigator) {

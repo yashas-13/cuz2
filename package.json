@@ -4,7 +4,7 @@
   "description": "This repository contains plans for an advanced, enterprise-level Supply Chain Management (SCM) system designed specifically for pharmaceutical manufacturers, Clearing & Forwarding Agents (CFAs), and stockists. The system ensures a tightly controlled in-house process flow where the Manufacturer retains authoritative oversight, with all CFA actions requiring explicit Manufacturer approval.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "idb": "^8.0.3",
+    "chart.js": "^4.4.1",
     "jest": "^30.0.2",
     "jest-environment-jsdom": "^30.0.2"
   },

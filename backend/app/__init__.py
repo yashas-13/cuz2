@@ -23,11 +23,15 @@ def create_app(config_class=None):
     from .routes.products import products_bp
     from .routes.inventory import inventory_bp
     from .routes.requests import requests_bp
+    from .routes.orders import orders_bp
+    from .routes.users import users_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(products_bp, url_prefix='/products')
     app.register_blueprint(inventory_bp, url_prefix='/inventory')
     app.register_blueprint(requests_bp, url_prefix='/requests')
+    app.register_blueprint(orders_bp, url_prefix='/orders')
+    app.register_blueprint(users_bp, url_prefix='/users')
 
     with app.app_context():
         db.create_all()
