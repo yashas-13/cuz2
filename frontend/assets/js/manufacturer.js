@@ -6,6 +6,23 @@ async function loadProducts() {
   console.log(data);
 }
 
+async function loadRequests() {
+  const resp = await window.apiFetch('/requests?status=pending');
+  const data = await resp.json();
+  const list = document.getElementById('requestsList');
+  if (!list) return;
+  list.innerHTML = '';
+  data.forEach(r => {
+    const li = document.createElement('li');
+    li.innerHTML = `<label><input type="checkbox" class="req-check" value="${r.id}">Request ${r.id} (${r.action} ${r.quantity})</label>`;
+    list.appendChild(li);
+  });
+}
+
+function getSelectedIds() {
+  return Array.from(document.querySelectorAll('.req-check:checked')).map(c => parseInt(c.value));
+}
+
 export async function bulkApprove(ids) {
   await window.apiFetch('/requests/bulk-approve', {
     method: 'PUT',
@@ -49,4 +66,25 @@ async function loadAnalytics() {
 window.addEventListener('load', () => {
   loadProducts();
   loadAnalytics();
+  loadRequests();
+  const approveBtn = document.getElementById('approveSelected');
+  const denyBtn = document.getElementById('denySelected');
+  if (approveBtn) {
+    approveBtn.addEventListener('click', async () => {
+      const ids = getSelectedIds();
+      if (ids.length) {
+        await bulkApprove(ids);
+        loadRequests();
+      }
+    });
+  }
+  if (denyBtn) {
+    denyBtn.addEventListener('click', async () => {
+      const ids = getSelectedIds();
+      if (ids.length) {
+        await bulkDeny(ids);
+        loadRequests();
+      }
+    });
+  }
 });
