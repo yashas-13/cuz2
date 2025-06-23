@@ -173,3 +173,6 @@ Follow standard Git workflows:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+
+## PWA Groundwork
+Service worker and offline queueing added to prepare for future mobile app support.

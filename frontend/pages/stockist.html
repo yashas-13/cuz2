@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>Stockist Dashboard</title></head>
+<head>
+  <title>Stockist Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
 <body>
 <h1>Stockist Dashboard</h1>
+<script src="../assets/js/api.js"></script>
+<script type="module" src="../assets/js/stockist.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../service-worker.js');
+  }
+</script>
 </body>
 </html>

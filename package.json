@@ -1,0 +1,22 @@
+{
+  "name": "cuz2",
+  "version": "1.0.0",
+  "description": "This repository contains plans for an advanced, enterprise-level Supply Chain Management (SCM) system designed specifically for pharmaceutical manufacturers, Clearing & Forwarding Agents (CFAs), and stockists. The system ensures a tightly controlled in-house process flow where the Manufacturer retains authoritative oversight, with all CFA actions requiring explicit Manufacturer approval.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "idb": "^8.0.3",
+    "jest": "^30.0.2",
+    "jest-environment-jsdom": "^30.0.2"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {}
+  }
+}
