@@ -2,7 +2,9 @@ from flask import Blueprint, request, jsonify
 
 from .. import db
 from ..models import Product, User
-from ..services.products import create_product
+from ..services.products import (create_product,
+                                 bulk_create_products,
+                                 bulk_update_products)
 from ...utils.decorators import role_required
 
 products_bp = Blueprint('products', __name__)
@@ -50,3 +52,25 @@ def delete_product(id):
     db.session.delete(product)
     db.session.commit()
     return jsonify({'msg': 'deleted'})
+
+
+@products_bp.route('/bulk', methods=['POST'])
+@role_required('Manufacturer')
+def bulk_create():
+    """Create multiple products in one request."""
+    data = request.get_json() or []
+    if not isinstance(data, list):
+        return jsonify({'msg': 'expected list'}), 400
+    products = bulk_create_products(data)
+    return jsonify({'created': [p.id for p in products]}), 201
+
+
+@products_bp.route('/bulk', methods=['PATCH'])
+@role_required('Manufacturer')
+def bulk_update():
+    """Update multiple products."""
+    data = request.get_json() or []
+    if not isinstance(data, list):
+        return jsonify({'msg': 'expected list'}), 400
+    products = bulk_update_products(data)
+    return jsonify({'updated': [p.id for p in products]})

@@ -36,3 +36,30 @@ def test_product_crud():
     assert resp.status_code == 200
     data = json.loads(resp.data)
     assert any(p['id'] == prod_id for p in data)
+
+
+def test_bulk_create_update():
+    app = setup_app()
+    client = app.test_client()
+    with app.app_context():
+        user = User.query.filter_by(username='manu').first()
+        token = create_access_token(identity=str(user.id), additional_claims={'role': 'Manufacturer'})
+    headers = {'Authorization': f'Bearer {token}'}
+    bulk_data = [
+        {'name': 'p1', 'price': 1, 'manufacturer_id': 1},
+        {'name': 'p2', 'price': 2, 'manufacturer_id': 1}
+    ]
+    resp = client.post('/products/bulk', json=bulk_data, headers=headers)
+    assert resp.status_code == 201
+    ids = json.loads(resp.data)['created']
+    assert len(ids) == 2
+    update_data = [
+        {'id': ids[0], 'price': 5},
+        {'id': ids[1], 'name': 'p2-new'}
+    ]
+    resp = client.patch('/products/bulk', json=update_data, headers=headers)
+    assert resp.status_code == 200
+    resp = client.get('/products/', headers=headers)
+    products = {p['id']: p for p in json.loads(resp.data)}
+    assert products[ids[0]]['price'] == 5
+    assert products[ids[1]]['name'] == 'p2-new'

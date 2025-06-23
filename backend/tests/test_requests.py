@@ -37,3 +37,23 @@ def test_request_approval():
     resp = client.get('/inventory/', headers={'Authorization': f'Bearer {cfa_token}'})
     data = json.loads(resp.data)
     assert any(i['product_id']==1 and i['quantity']==5 for i in data)
+
+
+def test_bulk_approval():
+    app = setup_app()
+    client = app.test_client()
+    with app.app_context():
+        cfa = User.query.filter_by(username='cfa').first()
+        man = User.query.filter_by(username='man').first()
+        cfa_token = create_access_token(identity=str(cfa.id), additional_claims={'role': 'CFA'})
+        man_token = create_access_token(identity=str(man.id), additional_claims={'role': 'Manufacturer'})
+    headers_cfa = {'Authorization': f'Bearer {cfa_token}'}
+    ids = []
+    for _ in range(2):
+        resp = client.post('/requests/', json={'product_id':1,'action':'add','quantity':2,'location_id':1}, headers=headers_cfa)
+        ids.append(json.loads(resp.data)['id'])
+    resp = client.put('/requests/bulk-approve', json={'ids': ids}, headers={'Authorization': f'Bearer {man_token}'})
+    assert resp.status_code == 200
+    resp = client.get('/inventory/', headers=headers_cfa)
+    data = json.loads(resp.data)
+    assert any(i['product_id']==1 and i['quantity']==4 for i in data)

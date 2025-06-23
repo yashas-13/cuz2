@@ -1,4 +1,5 @@
-const { apiFetch } = require('../assets/js/api.js');
+import { jest } from '@jest/globals';
+import { apiFetch } from '../assets/js/api.js';
 global.fetch = jest.fn(() => Promise.resolve({ status: 200 }));
 localStorage.setItem('token', 'abc');
 
