@@ -1,11 +1,12 @@
 #!/bin/bash
 # Simple health check script for frontend and backend URLs
-# Usage: BACKEND=http://localhost:5000 FRONTEND=http://localhost:8000 ./curl_test_all.sh
+# Usage: BACKEND=http://localhost:5000 FRONTEND=http://localhost:5000 ./curl_test_all.sh
 
 set -e
 
 BACKEND=${BACKEND:-http://localhost:5000}
-FRONTEND=${FRONTEND:-http://localhost:8000}
+# By default frontend uses the same base URL as the backend since Flask serves both.
+FRONTEND=${FRONTEND:-$BACKEND}
 
 backend_endpoints=(
   "/auth/register"
