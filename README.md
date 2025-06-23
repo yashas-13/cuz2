@@ -119,23 +119,43 @@ supply-chain-management/
 
 ## Installation and Setup
 
-All dependencies can be installed and the development servers started with a
-single helper script:
+You can run the servers either manually or via the provided helper script.
 
-```sh
+### 1. Manual start
+
+Run the following commands from the repository root:
+
+```bash
+# install backend dependencies
+pip install -r backend/requirements.txt
+
+# start the Flask API on http://localhost:5000
+python -m backend.run &
+
+# install frontend dependencies
+npm install
+
+# serve the static pages on http://localhost:8000
+cd frontend
+python -m http.server 8000 &
+cd ..
+```
+
+### 2. Helper script
+
+Instead of manually running each command you can execute:
+
+```bash
 ./setup_and_run.sh
 ```
 
-The script installs the Python packages in `backend/`, installs the frontend
-Node.js packages and then launches the Flask API on
-`http://localhost:5000` and a simple static server for the frontend on
-`http://localhost:8000`.
+The script performs the same steps as above and launches both servers.
 
-After running the script you can open `http://localhost:8000/pages/register.html`
-to register the first manufacturer account or simply use the seeded login
-below.  Sign in via `http://localhost:8000/pages/login.html`; the page will
-redirect to the appropriate dashboard based on the authenticated user's role.
-The backend seeds a sample manufacturer account on first run:
+Once running, open `http://localhost:8000/pages/register.html` to register the
+first manufacturer account or use the seeded credentials below to sign in via
+`http://localhost:8000/pages/login.html`. The page will redirect to the
+appropriate dashboard based on the authenticated user's role.  The backend seeds
+a sample manufacturer account on first run:
 
   ```
   username: samplemanufacturer
