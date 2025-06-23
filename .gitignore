@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+# Node
+node_modules/
+# Environment
+.env
+# Testing
+.coverage
+htmlcov/
+# Misc
+.DS_Store
+instance/

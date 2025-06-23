@@ -6,7 +6,7 @@ This repository contains plans for an advanced, enterprise-level Supply Chain Ma
 
 ## Project Status
 
-At the moment this repository only includes documentation describing the intended architecture and workflows.  The backend and frontend code referenced below has not yet been implemented.  The documents serve as a blueprint for future development.
+The repository now includes the initial Flask backend and a placeholder frontend structure.  Core modules, models, and routes are scaffolded, providing a working API for basic product and inventory management.  Further development will flesh out the remaining functionality.
 
 ## Key Functionalities
 
@@ -61,7 +61,7 @@ At the moment this repository only includes documentation describing the intende
 
 ## Repository File Structure
 
-The layout below illustrates the planned organization of the project.  The actual directories have not been created yet.
+The project now follows the directory structure shown below.
 
 ```
 supply-chain-management/
