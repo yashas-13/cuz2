@@ -132,7 +132,14 @@ python run.py
 ### Frontend
 
 - Serve the `frontend` directory via a local or HTTP server
-- Alternatively open `index.html` in browser
+- Alternatively open `index.html` in browser. A dedicated manufacturer
+  registration page is available at `pages/register.html`. The backend also
+  seeds a sample manufacturer account on first run:
+
+  ```
+  username: samplemanufacturer
+  password: samplepass
+  ```
 
 ## Authentication and Security
 

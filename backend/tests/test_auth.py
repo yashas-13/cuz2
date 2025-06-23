@@ -26,3 +26,10 @@ def test_register_and_login():
     assert resp.status_code == 200
     data = json.loads(resp.data)
     assert 'access_token' in data
+
+
+def test_register_non_manufacturer_forbidden():
+    app = setup_app()
+    client = app.test_client()
+    resp = client.post('/auth/register', json={'username': 'cfa', 'email': 'cfa@example.com', 'password': 'pass', 'role': 'CFA'})
+    assert resp.status_code == 403

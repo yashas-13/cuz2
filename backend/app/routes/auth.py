@@ -12,14 +12,17 @@ def register():
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
-    role_name = data.get('role', 'Stockist')
+    role_name = data.get('role', 'Manufacturer')
 
     if not username or not email or not password:
         return jsonify({'msg': 'Missing required fields'}), 400
 
-    role = Role.query.filter_by(name=role_name).first()
+    if role_name != 'Manufacturer':
+        return jsonify({'msg': 'Only manufacturer registration allowed'}), 403
+
+    role = Role.query.filter_by(name='Manufacturer').first()
     if role is None:
-        role = Role(name=role_name)
+        role = Role(name='Manufacturer')
         db.session.add(role)
         db.session.commit()
 
