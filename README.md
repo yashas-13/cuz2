@@ -119,22 +119,21 @@ supply-chain-management/
 
 ## Installation and Setup
 
-The following commands reflect the intended project structure.  The repository currently lacks the `backend` and `frontend` directories, so these steps serve as guidance for future implementation.
-
-### Backend
+All dependencies can be installed and the development servers started with a
+single helper script:
 
 ```sh
-cd backend
-pip install -r requirements.txt
-python run.py
+./setup_and_run.sh
 ```
 
-### Frontend
+The script installs the Python packages in `backend/`, installs the frontend
+Node.js packages and then launches the Flask API on
+`http://localhost:5000` and a simple static server for the frontend on
+`http://localhost:8000`.
 
-- Serve the `frontend` directory via a local or HTTP server
-- Alternatively open `index.html` in browser. A dedicated manufacturer
-  registration page is available at `pages/register.html`. The backend also
-  seeds a sample manufacturer account on first run:
+After running the script you can open `http://localhost:8000/pages/register.html`
+to register the first manufacturer account.  The backend also seeds a sample
+manufacturer account on first run:
 
   ```
   username: samplemanufacturer
