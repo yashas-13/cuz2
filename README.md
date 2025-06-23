@@ -129,16 +129,11 @@ Run the following commands from the repository root:
 # install backend dependencies
 pip install -r backend/requirements.txt
 
-# start the Flask API on http://localhost:5000
-python -m backend.run &
-
 # install frontend dependencies
 npm install
 
-# serve the static pages on http://localhost:8000
-cd frontend
-python -m http.server 8000 &
-cd ..
+# start the Flask server (serves API and frontend) on http://localhost:5000
+python -m backend.run
 ```
 
 ### 2. Helper script
@@ -154,11 +149,11 @@ defaults to `http://localhost:5000`, but you can override this by defining a
 `window.API_BASE` variable **before** loading `assets/js/api.js` when deploying
 against a different backend address.
 
-The script performs the same steps as above and launches both servers.
+The script performs the same steps as above and launches the single Flask server.
 
-Once running, open `http://localhost:8000/pages/register.html` to register the
+Once running, open `http://localhost:5000/pages/register.html` to register the
 first manufacturer account or use the seeded credentials below to sign in via
-`http://localhost:8000/pages/login.html`. The page will redirect to the
+`http://localhost:5000/pages/login.html`. The page will redirect to the
 appropriate dashboard based on the authenticated user's role.  The backend seeds
 a sample manufacturer account on first run:
 
@@ -176,9 +171,9 @@ the helper script:
 ./scripts/curl_test_all.sh
 ```
 
-By default it checks `http://localhost:5000` for API endpoints and
-`http://localhost:8000` for frontend pages. Set the `BACKEND` or `FRONTEND`
-environment variables to override the base URLs.
+By default it checks `http://localhost:5000` for both API endpoints and frontend
+pages. Set the `BACKEND` or `FRONTEND` environment variables to override the
+base URLs if needed.
 
 ## Authentication and Security
 

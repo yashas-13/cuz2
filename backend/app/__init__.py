@@ -25,6 +25,7 @@ def create_app(config_class=None):
     from .routes.requests import requests_bp
     from .routes.orders import orders_bp
     from .routes.users import users_bp
+    from .routes.frontend import frontend_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(products_bp, url_prefix='/products')
@@ -32,6 +33,9 @@ def create_app(config_class=None):
     app.register_blueprint(requests_bp, url_prefix='/requests')
     app.register_blueprint(orders_bp, url_prefix='/orders')
     app.register_blueprint(users_bp, url_prefix='/users')
+    # Serve frontend files via Flask so one server handles both frontend
+    # and backend when running ``backend.run``.
+    app.register_blueprint(frontend_bp)
 
     with app.app_context():
         db.create_all()
